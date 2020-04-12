@@ -320,13 +320,13 @@ class ExactInference(InferenceModule):
         """
         "*** YOUR CODE HERE ***"
 
-        newBeliefs = self.beliefs[:]
+        newBeliefs = DiscreteDistribution()
 
         for newPos in self.allPositions:
             total = 0
             for oldPos in self.allPositions:
                 newPosDist = self.getPositionDistribution(gameState, oldPos)
-                total += newPosDist[newPos]+self.beliefs[oldPos]
+                total += newPosDist[newPos]*self.beliefs[oldPos]
                 #self.distancer.getDistance(pos1, pos2) # returns maze distance
             newBeliefs[newPos] = total
 
